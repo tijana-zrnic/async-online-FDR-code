@@ -37,7 +37,13 @@ def plot_results(FDRrange, pirange, mu_gap, sigma, NUMHYP, lag_list, batch_size_
             for lag in lag_list:
 
                 if (FDR == 13 or FDR == 14) and (lag > 0 or batch_size >1):
-                    continue;
+                    continue
+
+                if (FDR != 10 and FDR != 11) and (batch_size >1):
+                    continue
+
+                if (FDR == 10 or FDR == 11) and (batch_size == 1):
+                    continue
 
                 filename_pre = 'MG%.1f_Si%.1f_FDR%d_NH%d_ND%d_L%d_MINI%d_' % (mu_gap, sigma, FDR, NUMHYP, NUMDRAWS, lag, batch_size)
                 all_filenames = [filename for filename in os.listdir('./dat') if filename.startswith(filename_pre)]
@@ -119,7 +125,7 @@ def plot_results(FDRrange, pirange, mu_gap, sigma, NUMHYP, lag_list, batch_size_
     # legends_list = [r"LORD$_{dep}, L=0$", r"LORD$_{dep}, L=50$", r"LORD$_{dep}, L=100$", r"LORD$_{dep}, L=150$", r"Alpha-spending", r"Uncorrected"]
     # legends_list = [r"LORD$_{async}, p=1$", r"LORD$_{async}, p=1/50$", r"LORD$_{async}, p=1/100$", r"LORD$_{async}, p=1/150$", r"Alpha-spending", r"Uncorrected"]
     # legends_list = [r"LORD$_{mini}, B=1$", r"LORD$_{mini}, B=50$", r"LORD$_{mini}, B = 100$", r"LORD$_{mini}, B=150$", r"Alpha-spending", r"Uncorrected"]
-    legends_list = [r"SAFFRON$_{dep}$", r"LORD$_{dep}$", r"LORD under dependence", r"Alpha-spending", r"Uncorrected"]
+    legends_list = [r"SAFFRON$_{dep}$", r"LORD$_{dep}$", r"LORD under dependence", r"Alpha-spending", r"Uncorrected", r"Uncorrected", r"Uncorrected", r"Uncorrected"]
     # legends_list = [r"SAFFRON$_{mini}, B=1$", r"SAFFRON$_{mini}, B=50$", r"SAFFRON$_{mini}, B = 100$",
     #                     r"SAFFRON$_{mini}, B=150$", r"Alpha-spending", r"Uncorrected"]
 

@@ -46,6 +46,11 @@ class SAFFRON_proc_batch:
             if (rej[k + 1 + self.lag] == 1):
                 last_rej = np.append(last_rej, k + 1 + self.lag).astype(int)
 
+            # # Update wealth
+            # wealth = self.wealth_vec[k] - (1 - candidates[k + 1]) * this_alpha + rej[k + 1] * (1 - self.lbd) * (
+            # self.alpha0) - rej[k + 1] * flag * self.w0
+            # self.wealth_vec[k + 1] = wealth
+
 
             candidates_total = sum(candidates[0:k+2])
             zero_gam = self.gamma_vec[k + 1 - (int)(candidates_total)]
